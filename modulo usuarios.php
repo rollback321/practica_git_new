@@ -6,8 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="">He agredo el inicio del programa</a>
-    <a href="">he agregado el modulo de usuarios</a>
-    <a href="">Se agrego el modulo administrador</a>
+    <h2>Modulo</h2>
 </body>
 </html>
