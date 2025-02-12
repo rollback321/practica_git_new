@@ -15,7 +15,7 @@ use App\Http\Responses\ApiResponse;
 class Ctrl_usuarios extends Controller
 {
     
-    /** ==========  Listar registros  ========== */
+    /** ==========  Listar registros http GET (http GET -> URL}) ========== */
     public function index (Request $request) {
         
         try{
@@ -37,7 +37,7 @@ class Ctrl_usuarios extends Controller
         }                    
     }
 
-    /**  =========  Permite mostrar registro, mediante la clave unica del registro  ======*/
+    /**  =========  Permite mostrar registro, mediante la clave unica del registro (http GET -> URL../{$id})  ======*/
     public function show (Request $request, $id) {
         try{        
             $data_user = tbl_pri_usuarios::find($id);            
@@ -56,7 +56,7 @@ class Ctrl_usuarios extends Controller
         
     }
 
-    /** =====================  Permite crear un registro de usuario ============= */
+    /** =====================  Permite crear un registro de usuario (http POST) ============= */
     public function store (UsuarioRequest $request){
        $validatedData = $request->validated();
 
@@ -79,7 +79,32 @@ class Ctrl_usuarios extends Controller
         } 
     }
 
+    /** ===================== Permte Actualizar actualizar registros (http PUT, PATH --> URL../{$id}) ======== */
+    /** ===================== PUT -> actualizar registro con varios datos, PATCH -> actualizar el estado del registro =======*/
     public function update (UsuarioRequest $request, $id){
-        return ($request->method()); 
+        try {
+            /** Se verifica que el registro sea numerico*/
+            if (!is_numeric($id)){
+                return ApiResponse::error("error",500,"The data is not numeric");
+            } else {
+                /** Se verifica que existe el registro*/
+                $data_user = tbl_pri_usuarios::find($id); 
+                if($data_user){
+                    /** http PATCH */
+                    if($request->isMethod('patch')){
+                        $data_user->update(['us_estado' => $request->input('status')]);
+                        return  ApiResponse::success("State update success", 200, $data_user);    
+                    /** http PUT*/             
+                    } else {   
+                        $data_user->update($request->validated());                     
+                        return ApiResponse::success("Success", 200, "ok");
+                    }                    
+                } else {
+                    return ApiResponse::error("error",500,"data not register");                
+                }
+            }  
+        } catch (Exception $e) {
+            return ApiResponse::error('An unexpected error ocurred', 500, $e->getMessage()); 
+        }                                   
     }
 }

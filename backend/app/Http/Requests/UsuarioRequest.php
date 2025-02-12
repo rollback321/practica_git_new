@@ -22,19 +22,20 @@ class UsuarioRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->isMethod('put')){
+
+
+        if ($this->isMethod('patch')){
             return [
                 'status' => ['required']
-            ];
-            //return "true put";
+            ]; 
+        /** ============ Solo se efectua si es metodo http post o put ============= */         
         } else {
             return [
                 "us_nom_usuario" => ['required','max:50','min:8'],
                 "us_password" => ['required','max:20','min:8'], 
                 "us_nombres" => ['required','max:50'],  
                 "us_paterno" => ['required', ' min:3', 'max:30'],
-                "us_materno" => []  
-                
+                "us_materno" => []                  
             ];
         }
     }

@@ -37,4 +37,8 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('/users', Ctrl_usuarios::class); //->except(['index', 'show'])
 
-//Route::patch('/users/{id}', [Ctrl_usuarios::class, 'update']);
+// =============================================================================
+// PATCH -->  http://127.0.0.1:8000/api/users/1
+// {
+//     "status":"D"
+// }
