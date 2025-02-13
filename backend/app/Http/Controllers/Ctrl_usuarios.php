@@ -107,4 +107,9 @@ class Ctrl_usuarios extends Controller
             return ApiResponse::error('An unexpected error ocurred', 500, $e->getMessage()); 
         }                                   
     }
+
+    public function pruebaMid (Request $request) {
+        return $request;
+    }  
+
 }

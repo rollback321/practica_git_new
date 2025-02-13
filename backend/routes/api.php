@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ctrl_usuarios;
+use App\Http\Middleware\IntersepcionRuta;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -35,7 +36,12 @@ Route::get('/user', function (Request $request) {
 //     "us_estado":"V"
 //   }
 
-Route::apiResource('/users', Ctrl_usuarios::class); //->except(['index', 'show'])
+//Route::apiResource('/users', Ctrl_usuarios::class); //->except(['index', 'show'])
+
+Route::middleware([IntersepcionRuta::class])->group(function (){
+    Route::apiResource('/users', Ctrl_usuarios::class);
+    Route::get('/pruebaMid', [Ctrl_usuarios::class, 'pruebaMid']);
+});
 
 // =============================================================================
 // PATCH -->  http://127.0.0.1:8000/api/users/1
