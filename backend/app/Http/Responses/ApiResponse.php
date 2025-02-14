@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Responses;
-
+/** Permite estandarizar las respuestas del servidor al cliente (estador 200, 400, 500) */
 class ApiResponse
 {
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/** Permite realizar validaciones de los datos antes de que los datos llegue al controlador */
 class UsuarioRequest extends FormRequest
 {
     /**

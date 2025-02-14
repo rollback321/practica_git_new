@@ -270,10 +270,10 @@ return [
         |--------------------------------------------------------------------------
         |
         | Specify the provider that is used to create and decode the tokens.
-        |
+        |   'jwt' => PHPOpenSourceSaver\JWTAuth\Providers\JWT\Lcobucci::class,
         */
 
-        'jwt' => PHPOpenSourceSaver\JWTAuth\Providers\JWT\Lcobucci::class,
+        'jwt' => Tymon\JWTAuth\Providers\JWT\Lcobucci::class,
 
         /*
         |--------------------------------------------------------------------------
@@ -281,10 +281,10 @@ return [
         |--------------------------------------------------------------------------
         |
         | Specify the provider that is used to authenticate users.
-        |
+        | 'auth' => PHPOpenSourceSaver\JWTAuth\Providers\Auth\Illuminate::class,
         */
 
-        'auth' => PHPOpenSourceSaver\JWTAuth\Providers\Auth\Illuminate::class,
+        'auth' => Tymon\JWTAuth\Providers\Auth\Illuminate::class,
 
         /*
         |--------------------------------------------------------------------------
@@ -292,9 +292,9 @@ return [
         |--------------------------------------------------------------------------
         |
         | Specify the provider that is used to store tokens in the blacklist.
-        |
+        | 'storage' => PHPOpenSourceSaver\JWTAuth\Providers\Storage\Illuminate::class,
         */
-
-        'storage' => PHPOpenSourceSaver\JWTAuth\Providers\Storage\Illuminate::class,
+        'storage' => Tymon\JWTAuth\Providers\Storage\Illuminate::class,
+       
     ],
 ];

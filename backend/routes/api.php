@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ctrl_usuarios;
-use App\Http\Middleware\IntersepcionRuta;
+use App\Http\Middleware\MidVerificarToken;
+use App\Http\Controllers\ContrToken;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -38,10 +39,11 @@ Route::get('/user', function (Request $request) {
 
 //Route::apiResource('/users', Ctrl_usuarios::class); //->except(['index', 'show'])
 
-Route::middleware([IntersepcionRuta::class])->group(function (){
-    Route::apiResource('/users', Ctrl_usuarios::class);
-    Route::get('/pruebaMid', [Ctrl_usuarios::class, 'pruebaMid']);
+Route::middleware([MidVerificarToken::class])->group(function (){
+    Route::apiResource('/users', Ctrl_usuarios::class); 
 });
+
+Route::get('/generarToken', [ContrToken::class, 'generarToken']);
 
 // =============================================================================
 // PATCH -->  http://127.0.0.1:8000/api/users/1

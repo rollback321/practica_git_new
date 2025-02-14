@@ -12,6 +12,8 @@ class ResourceUsuarios extends JsonResource
      *
      * @return array<string, mixed>
      */
+
+     /** Permite generar un estandar y/o orden  para devoluciones de datos */
     public function toArray($request): array
     {
         return [
